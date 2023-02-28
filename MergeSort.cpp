@@ -14,16 +14,33 @@ void merge(int a[], int s,int m, int e){
     int j = m + 1;
     k = s;
 
-    while(i <= j && j <= s){
+    while(i <= m && j <= e){
         if(buffer[i] <= buffer[j]){
             a[k] = buffer[i];
             i = i + 1;
         }
         else{
             a[k] = buffer[j];
+            j++;
         }
+        k = k + 1;
     }
+
+    while(i <= m ){
+        a[k] = buffer[i];
+        i++;
+        k++;
+    }
+
+    while( j <= e){
+        a[k] = buffer[j];
+        j++;
+        k++;
+    }
+
+    delete[] buffer;
 }
+
 
 
 //auxiliary function
@@ -42,9 +59,25 @@ void mrgSort(int a[], int n){ //wrapper function
 }
 
 
+void display(int a[], int n){
+    int i = 0;
+    while(i < n){
+        cout<<a[i]<<",";
+        ++i;
+    }
+    cout << endl;
+}
+
 
 int main(){
 
+    int arr[] = {4,5,2,37};
+    int size = sizeof(arr)/sizeof(int);
+    cout<<"desordenado: " <<endl;
+    display(arr, size);
+    mrgSort(arr,size);
+    cout<<"ordenado: "<<endl;
+    display(arr,size);
 
 
 }
